@@ -50,7 +50,7 @@
             <div class="container-fluid">
                 <div class="container px-0">
                     <nav class="navbar navbar-light navbar-expand-xl" id="navBar">
-                        <a href="<?=ROOT?>/assets/index.html" class="navbar-brand">
+                        <a href="<?=ROOT?>index.html" class="navbar-brand">
                             <h4 class="text-primary display-6 fw-bold mb-0">Mr<strong class="text-secondary">&</strong>Mrs</h4>
                         </a>
                         <button class="navbar-toggler py-2 px-3" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
@@ -58,15 +58,15 @@
                         </button>
                         <div class="collapse navbar-collapse py-3" id="navbarCollapse">
                             <div class="navbar-nav mx-auto border-top">
-                                <a href="<?=ROOT?>/assets/#weddingHome" class="nav-item nav-link active">Home</a>
-                                <a href="<?=ROOT?>/assets/#weddingAbout" class="nav-item nav-link">About</a>
-                                <a href="<?=ROOT?>/assets/#weddingStory" class="nav-item nav-link">Story</a>
-                                <a href="<?=ROOT?>/assets/#weddingTimeline" class="nav-item nav-link">Timeline</a>
-                                <a href="<?=ROOT?>/assets/#weddingGallery" class="nav-item nav-link">Gallery</a>
-                                <a href="<?=ROOT?>/assets/#weddingRsvp" class="nav-item nav-link">RSVP</a>
+                                <a href="<?=ROOT?>#weddingHome" class="nav-item nav-link active">Home</a>
+                                <a href="<?=ROOT?>#weddingAbout" class="nav-item nav-link">About</a>
+                                <a href="<?=ROOT?>#weddingStory" class="nav-item nav-link">Story</a>
+                                <a href="<?=ROOT?>#weddingTimeline" class="nav-item nav-link">Timeline</a>
+                                <a href="<?=ROOT?>#weddingGallery" class="nav-item nav-link">Gallery</a>
+                                <a href="<?=ROOT?>#weddingRsvp" class="nav-item nav-link">RSVP</a>
                             </div>
                             <div class="d-flex align-items-center flex-nowrap pt-xl-0">
-                                <a href="<?=ROOT?>/assets/#weddingRsvp" class="btn btn-primary btn-primary-outline-0 py-2 px-4 ms-4">Book Attendance</a>
+                                <a href="<?=ROOT?>#weddingRsvp" class="btn btn-primary btn-primary-outline-0 py-2 px-4 ms-4">Book Attendance</a>
                             </div>
                         </div>
                     </nav>
@@ -510,7 +510,7 @@
                                 <img class="img-fluid w-100" src="<?=ROOT?>/assets/img/gallery-1.jpg" alt="">
                                 <div class="hover-style"></div>
                                 <div class="search-icon">
-                                    <a href="img/gallery-1.jpg" data-lightbox="Gallery-1" class="my-auto"><i class="fas fa-plus btn-primary btn-primary-outline-0 p-3"></i></a>
+                                    <a href="<?=ROOT?>/assets/img/gallery-1.jpg" data-lightbox="Gallery-1" class="my-auto"><i class="fas fa-plus btn-primary btn-primary-outline-0 p-3"></i></a>
                                 </div>
                             </div>
                             <div class="gallery-overlay bg-light border-secondary border-top-0 p-4" style="border-style: double;">
@@ -540,7 +540,7 @@
                                 <img class="img-fluid w-100" src="<?=ROOT?>/assets/img/gallery-3.jpg" alt="">
                                 <div class="hover-style"></div>
                                 <div class="search-icon">
-                                    <a href="img/gallery-3.jpg" data-lightbox="Gallery-3" class="my-auto"><i class="fas fa-plus btn-primary btn-primary-outline-0 p-3"></i></a>
+                                    <a href="<?=ROOT?>/assets/img/gallery-3.jpg" data-lightbox="Gallery-3" class="my-auto"><i class="fas fa-plus btn-primary btn-primary-outline-0 p-3"></i></a>
                                 </div>
                             </div>
                             <div class="gallery-overlay bg-light border-secondary border-top-0 p-4" style="border-style: double;">
@@ -555,7 +555,7 @@
                                 <img class="img-fluid w-100" src="<?=ROOT?>/assets/img/gallery-4.jpg" alt="">
                                 <div class="hover-style"></div>
                                 <div class="search-icon">
-                                    <a href="img/gallery-4.jpg" data-lightbox="Gallery-4" class="my-auto"><i class="fas fa-plus btn-primary btn-primary-outline-0 p-3"></i></a>
+                                    <a href="<?=ROOT?>/assets/img/gallery-4.jpg" data-lightbox="Gallery-4" class="my-auto"><i class="fas fa-plus btn-primary btn-primary-outline-0 p-3"></i></a>
                                 </div>
                             </div>
                             <div class="gallery-overlay bg-light border-secondary border-top-0 p-4" style="border-style: double;">
@@ -570,7 +570,7 @@
                                 <img class="img-fluid w-100" src="<?=ROOT?>/assets/img/gallery-5.jpg" alt="">
                                 <div class="hover-style"></div>
                                 <div class="search-icon">
-                                    <a href="img/gallery-5.jpg" data-lightbox="Gallery-5" class="my-auto"><i class="fas fa-plus btn-primary btn-primary-outline-0 p-3"></i></a>
+                                    <a href="<?=ROOT?>/assets/img/gallery-5.jpg" data-lightbox="Gallery-5" class="my-auto"><i class="fas fa-plus btn-primary btn-primary-outline-0 p-3"></i></a>
                                 </div>
                             </div>
                             <div class="gallery-overlay bg-light border-secondary border-top-0 p-4" style="border-style: double;">
@@ -585,7 +585,7 @@
                                 <img class="img-fluid w-100" src="<?=ROOT?>/assets/img/gallery-6.jpg" alt="">
                                 <div class="hover-style"></div>
                                 <div class="search-icon">
-                                    <a href="img/gallery-6.jpg" data-lightbox="Gallery-6" class="my-auto"><i class="fas fa-plus btn-primary btn-primary-outline-0 p-3"></i></a>
+                                    <a href="<?=ROOT?>/assets/img/gallery-6.jpg" data-lightbox="Gallery-6" class="my-auto"><i class="fas fa-plus btn-primary btn-primary-outline-0 p-3"></i></a>
                                 </div>
                             </div>
                             <div class="gallery-overlay bg-light border-secondary border-top-0 p-4" style="border-style: double;">
@@ -600,7 +600,7 @@
                                 <img class="img-fluid w-100" src="<?=ROOT?>/assets/img/gallery-7.jpg" alt="">
                                 <div class="hover-style"></div>
                                 <div class="search-icon">
-                                    <a href="img/gallery-7.jpg" data-lightbox="Gallery-7" class="my-auto"><i class="fas fa-plus btn-primary btn-primary-outline-0 p-3"></i></a>
+                                    <a href="<?=ROOT?>/assets/img/gallery-7.jpg" data-lightbox="Gallery-7" class="my-auto"><i class="fas fa-plus btn-primary btn-primary-outline-0 p-3"></i></a>
                                 </div>
                             </div>
                             <div class="gallery-overlay bg-light border-secondary border-top-0 p-4" style="border-style: double;">
@@ -615,7 +615,7 @@
                                 <img class="img-fluid w-100" src="<?=ROOT?>/assets/img/gallery-8.jpg" alt="">
                                 <div class="hover-style"></div>
                                 <div class="search-icon">
-                                    <a href="img/gallery-8.jpg" data-lightbox="Gallery-8" class="my-auto"><i class="fas fa-plus btn-primary btn-primary-outline-0 p-3"></i></a>
+                                    <a href="<?=ROOT?>/assets/img/gallery-8.jpg" data-lightbox="Gallery-8" class="my-auto"><i class="fas fa-plus btn-primary btn-primary-outline-0 p-3"></i></a>
                                 </div>
                             </div>
                             <div class="gallery-overlay bg-light border-secondary border-top-0 p-4" style="border-style: double;">
