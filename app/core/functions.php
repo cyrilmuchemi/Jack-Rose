@@ -9,3 +9,8 @@ function show($stuff){
 function escape($str){
     return htmlspecialchars($str);
 }
+
+function redirect($path){
+    header("Location: " . ROOT . "/" .$path);
+    die;
+}
