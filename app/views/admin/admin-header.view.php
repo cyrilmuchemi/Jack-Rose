@@ -60,6 +60,12 @@
                     <span>Home Page</span></a>
             </li>
              <hr class="sidebar-divider my-0">
+             <li class="nav-item active">
+                <a class="nav-link" href="<?=ROOT?>/admin/users">
+                    <i class="fas fa-fw fa-tachometer-alt"></i>
+                    <span>Users</span></a>
+            </li>
+             <hr class="sidebar-divider my-0">
             <li class="nav-item active">
                 <a class="nav-link" href="<?=ROOT?>/admin/about">
                     <i class="fas fa-fw fa-tachometer-alt"></i>

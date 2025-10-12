@@ -4,10 +4,10 @@ Trait Model
 {
     use Database; 
 
-    protected $limit = 10;
-    protected $offset = 0;
-    protected $order_type = "desc";
-    protected $order_column = "id";
+    public $limit = 10;
+    public $offset = 0;
+    public $order_type = "desc";
+    public $order_column = "id";
 
     public function findAll(){
         $query = "SELECT * FROM $this->table order by $this->order_column $this->order_type limit $this->limit offset $this->offset";

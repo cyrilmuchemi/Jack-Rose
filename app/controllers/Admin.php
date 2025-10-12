@@ -4,12 +4,13 @@ class Admin extends Controller
 {
     public function index(){
         $user = new User();
-        $user->create_table();
         //redirect('login');
         $this->view('admin/dashboard');
     }
 
-    public function users(){
-        $this->view('admin/users');
+    public function users($action = ""){
+        $user = new User();
+        $data['rows'] = $user->findAll();
+        $this->view('admin/users', $data);
     }
 }
