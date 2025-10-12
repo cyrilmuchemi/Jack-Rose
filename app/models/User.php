@@ -4,19 +4,23 @@ class User
 {
     use Model;
 
+    protected $table = 'users';
+
     protected $allowedColumns = [
         'username',
         'email',
         'password'
     ];
 
-    public function validate(){
+    public function validate($data, $id = ""){
         $this->errors = [];
 
         if(empty($data['email'])){
             $this->errors['email'] = 'Email is required';
         }else if(!filter_var($data['email'], FILTER_VALIDATE_EMAIL)){
             $this->errors['email'] = "Email is not valid";
+        }else if($this->first(['email' => $data['email']], ['id' => $id])){
+            $this->errors['email'] = "Email is already in use";
         }
 
         if(empty($data['password'])){
@@ -39,5 +43,7 @@ class User
         
         key email (email)
         )";
+
+        $this->query($query);
     }
 }
