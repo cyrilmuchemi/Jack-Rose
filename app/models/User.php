@@ -12,27 +12,33 @@ class User
         'password'
     ];
 
-    public function validate($data, $id = ""){
+    public function validate($data, $id = null)
+    {
         $this->errors = [];
 
-        if(empty($data['email'])){
-            $this->errors['email'] = 'Email is required';
-        }else if(!filter_var($data['email'], FILTER_VALIDATE_EMAIL)){
-            $this->errors['email'] = "Email is not valid";
-        }else if($this->first(['email' => $data['email']], ['id' => $id])){
-            $this->errors['email'] = "Email is already in use";
+        if (empty($data['username'])) {
+            $this->errors['username'] = 'Username is required';
         }
 
-        if(empty($data['password'])){
+        if (empty($data['email'])) {
+            $this->errors['email'] = 'Email is required';
+        } else if (!filter_var($data['email'], FILTER_VALIDATE_EMAIL)) {
+            $this->errors['email'] = "Email is not valid";
+        } else {
+            // Only check for duplicates if creating a new user or email has changed
+            $existing = $this->first(['email' => $data['email']]);
+            if ($existing && $existing->id != $id) {
+                $this->errors['email'] = "Email is already in use";
+            }
+        }
+
+        if ($id === null && empty($data['password'])) {
             $this->errors['password'] = "Password is required";
         }
 
-        if(empty($this->errors)){
-            return true;
-        }
-
-        return false;
+        return empty($this->errors);
     }
+
 
     public function create_table(){
         $query = "create table if not exists users(

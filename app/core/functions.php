@@ -14,3 +14,8 @@ function redirect($path){
     header("Location: " . ROOT . "/" .$path);
     die;
 }
+
+function old_value($key, $default = ''){
+    if(!empty($_POST[$key])) return $_POST[$key];
+    return $default;
+}
