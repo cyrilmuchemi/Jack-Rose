@@ -1,6 +1,18 @@
 <?php $this->view('admin/admin-header')?>
 <?php if($action == "new"):?>
-    new
+    <div class="col-md-6 mx-auto p-3">
+       <?php if(!empty($errors)): ?>
+            <div class="alert alert-danger text-center">
+                <?= implode('<br>', $errors) ?>
+            </div>
+        <?php endif; ?>
+        <form action="post">
+        <input type="text" class="form-control mt-3" name="username" placeholder="Username">
+        <input type="email" class="form-control mt-3" name="email" placeholder="Email">
+        <input type="password" class="form-control mt-3" name="password" placeholder="Password">
+        <button class="btn btn-primary my-4">Save</button>
+    </form>
+    </div>
 <?php elseif($action == "edit"):?>
     edit
 <?php elseif($action == "delete"):?>

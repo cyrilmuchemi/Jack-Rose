@@ -2,8 +2,10 @@
 
 class Controller 
 {
-    public function view($name){
+    public function view($name, $data = []){
 
+        extract($data);
+        
         $file_name = "../app/views/".$name.".view.php";
 
         if(file_exists($file_name)){
