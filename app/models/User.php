@@ -39,12 +39,22 @@ class User
         return empty($this->errors);
     }
 
-    public function authenticate($row){
-        $_SESSION['user'] = $row;
+    public function authenticate($row)
+    {
+        if (session_status() === PHP_SESSION_NONE) {
+            session_start();
+        }
+
+        $_SESSION['USER'] = [
+            'id' => $row->id,
+            'username' => $row->username,
+            'email' => $row->email,
+            'role' => $row->role ?? 'user'
+        ];
     }
 
     public function logout(){
-        if(!empty($_SESSION['user'])) unset($_SESSION['user']);
+        if(!empty($_SESSION['USER'])) unset($_SESSION['USER']);
     }
 
     public function logged_in(){
