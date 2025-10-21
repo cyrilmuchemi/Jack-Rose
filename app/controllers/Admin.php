@@ -4,7 +4,7 @@ class Admin extends Controller
 {
     public function index(){
         $user = new User();
-        //redirect('login');
+        if(!$user->logged_in()) redirect('login');
         $this->view('admin/dashboard');
     }
 

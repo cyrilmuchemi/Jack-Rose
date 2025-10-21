@@ -39,6 +39,18 @@ class User
         return empty($this->errors);
     }
 
+    public function authenticate($row){
+        $_SESSION['user'] = $row;
+    }
+
+    public function logout(){
+        if(!empty($_SESSION['user'])) unset($_SESSION['user']);
+    }
+
+    public function logged_in(){
+        if(!empty($_SESSION['user'])) return true;
+        return false;
+    }
 
     public function create_table(){
         $query = "create table if not exists users(
