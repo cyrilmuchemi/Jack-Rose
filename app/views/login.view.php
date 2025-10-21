@@ -41,19 +41,19 @@
                                     <div class="text-center">
                                         <h1 class="h4 text-gray-900 mb-4">Welcome Back!</h1>
                                     </div>
-                                    <form class="user">
+                                    <form class="user" method="POST" action="">
                                         <?php if(!empty($errors)): ?>
                                             <div class="alert alert-danger text-center">
                                                 <?= implode('<br>', $errors) ?>
                                             </div>
                                         <?php endif; ?>
                                         <div class="form-group">
-                                            <input type="email" value="<?=old_value('email')?>" class="form-control form-control-user"
+                                            <input type="email" value="<?=old_value('email')?>" name="email" class="form-control form-control-user"
                                                 id="exampleInputEmail" aria-describedby="emailHelp"
                                                 placeholder="Enter Email Address...">
                                         </div>
                                         <div class="form-group">
-                                            <input type="password" value="<?=old_value('password')?>" class="form-control form-control-user"
+                                            <input type="password" value="<?=old_value('password')?>" name="password" class="form-control form-control-user"
                                                 id="exampleInputPassword" placeholder="Password">
                                         </div>
                                         <div class="form-group">
@@ -63,9 +63,9 @@
                                                     Me</label>
                                             </div>
                                         </div>
-                                        <a href="index.html" class="btn btn-primary btn-user btn-block">
+                                        <button type="submit" class="btn btn-primary btn-user btn-block">
                                             Login
-                                        </a>
+                                        </button>
                                         <hr>
                                         <a href="index.html" class="btn btn-google btn-user btn-block">
                                             <i class="fab fa-google fa-fw"></i> Login with Google
@@ -94,14 +94,14 @@
     </div>
 
     <!-- Bootstrap core JavaScript-->
-    <script src="<?ROOT?>/assets/vendor/jquery/jquery.min.js"></script>
-    <script src="<?ROOT?>/assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="<?=ROOT?>/assets/vendor/jquery/jquery.min.js"></script>
+    <script src="<?=ROOT?>/assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
     <!-- Core plugin JavaScript-->
-    <script src="<?ROOT?>/assets/vendor/jquery-easing/jquery.easing.min.js"></script>
+    <script src="<?=ROOT?>/assets/vendor/jquery-easing/jquery.easing.min.js"></script>
 
     <!-- Custom scripts for all pages-->
-    <script src="<?ROOT?>/assets/js/sb-admin-2.min.js"></script>
+    <script src="<?=ROOT?>/assets/js/sb-admin-2.min.js"></script>
 
 </body>
 
