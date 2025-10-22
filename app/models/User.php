@@ -58,7 +58,7 @@ class User
     }
 
     public function logged_in(){
-        if(!empty($_SESSION['user'])) return true;
+        if(!empty($_SESSION['USER'])) return true;
         return false;
     }
 

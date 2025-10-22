@@ -11,6 +11,7 @@ function escape($str){
 }
 
 function redirect($path){
+    error_log("Redirecting to: " . ROOT . "/" . $path);
     header("Location: " . ROOT . "/" .$path);
     die;
 }
