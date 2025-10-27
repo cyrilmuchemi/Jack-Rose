@@ -59,6 +59,11 @@
                     <i class="fas fa-fw fa-tachometer-alt"></i>
                     <span>Home Page</span></a>
             </li>
+             <li class="nav-item active">
+                <a class="nav-link" href="<?=ROOT?>/admin/contact">
+                    <i class="fas fa-fw fa-tachometer-alt"></i>
+                    <span>Contact Page</span></a>
+            </li>
              <hr class="sidebar-divider my-0">
              <li class="nav-item active">
                 <a class="nav-link" href="<?=ROOT?>/admin/users">

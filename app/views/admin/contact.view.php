@@ -8,34 +8,31 @@
             <?php endif; ?>
             <?php if(!empty($row)):?>
             <form method="post">
-                <input value="<?=old_value('username', $row->username)?>" type="text" class="form-control mt-3" name="username" placeholder="Username">
-                <input value="<?=old_value('email', $row->email)?>" type="email" class="form-control mt-3" name="email" placeholder="Email">
-                <input value="<?=old_value('password')?>" type="password" class="form-control mt-3" name="password" placeholder="Password (Leave empty to keep old password)">
-                <button class="btn btn-primary my-4">Save</button>
+                <label>Twitter link:</label>
+                <input value="<?=old_value('twitter_link', $row->twitter_link)?>" type="text" class="form-control mb-3" name="twitter_link" placeholder="Twitter Link">
             </form>
             <?php else:?>
                 <div class="alert alert-danger text-center">Record not found.</div>
             <?php endif;?>
     </div>
 <?php else:?>
- <h3 class="h3 mb-0 text-gray-800">Contact</h3>
+ <h3 class="h3 mb-0 text-gray-800">Contact Info Links</h3>
  <table class="table table-striped table-bordered mt-4">
     
     <?php if(!empty($rows)): ?>
         <?php foreach($rows as $row):?>
-            <tr>
-                <th>Twitter:</th><td><?= $row->id ?></td>
-                <th>Facebook:</th>
-                <th>Instagram:</th>
-                <th>LinkedIn:</th>
-                <th>Email</th>
-                <th>Phone</th>
-                <th>Action</th>
-                <td>
-                    <a href="<?=ROOT?>/admin/contact/edit<?=$row->id?>">
-                        <button class="btn btn-primary">Edit</button>
-                    </a>
-                </td>
+            <tr><th>Twitter:</th><td><?= $row->twitter_link ?></td></tr>
+            <tr><th>Facebook:</th><td><?= $row->facebook_link ?></td></tr>
+            <tr><th>Instagram:</th><td><?= $row->instagram_link ?></td></tr>
+            <tr><th>LinkedIn:</th><td><?= $row->linkedin_link ?></td></tr>
+            <tr><th>Email:</th><td><?= $row->email ?></td></tr>
+            <tr><th>Phone:</th><td><?= $row->phone ?></td></tr>
+            <th>Action</th>
+            <td>
+                <a href="<?=ROOT?>/admin/contact/edit/<?=$row->id?>">
+                    <button class="btn btn-primary">Edit</button>
+                </a>
+            </td>
             </tr>  
         <?php endforeach;?>
     <?php endif;?>
