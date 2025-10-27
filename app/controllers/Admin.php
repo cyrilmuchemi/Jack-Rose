@@ -52,8 +52,11 @@ class Admin extends Controller
     public function contact($action = null, $id = null){
         $user = new User();
         $contact = new Contact_Model();
-
+        $contact->create_table();
+        if(!$user->logged_in()) redirect('login');
+        $this->view('admin/dashboard');
         $data['action'] = $action;
+        $contact->limit = 1;
         $data['rows'] = $contact->findAll();
 
             if($action == 'edit'){
