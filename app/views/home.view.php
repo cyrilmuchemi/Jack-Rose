@@ -1033,12 +1033,12 @@
                     <div class="col-lg-4 text-end">
                         <div class="footer-item d-flex flex-column">
                             <h4 class="mb-4 text-white">Follow Us</h4>
-                            <a href="#" class="btn-link"> Faceboock</a>
-                            <a href="#" class="btn-link"> Instagram</a>
-                            <a href="#" class="btn-link"> Twitter</a>
+                            <a href="#" target="blank" class="btn-link"> Faceboock</a>
+                            <a href="#" target="blank" class="btn-link"> Instagram</a>
+                            <a href="#" target="blank" class="btn-link"> Twitter</a>
                             <h4 class="my-4 text-white">Contact Us</h4>
-                            <a href="#" class="btn-link"><i class="fas fa-envelope text-secondary me-2"></i> info@example.com</a>
-                            <a href="#" class="btn-link"><i class="fas fa-phone text-secondary me-2"></i> (+012) 3456 7890 123</a>
+                            <a href="#" target="blank" class="btn-link"><i class="fas fa-envelope text-secondary me-2"></i> info@example.com</a>
+                            <a href="#" target="blank" class="btn-link"><i class="fas fa-phone text-secondary me-2"></i> (+012) 3456 7890 123</a>
                         </div>
                     </div>
                 </div>

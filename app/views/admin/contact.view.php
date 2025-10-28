@@ -12,6 +12,14 @@
                 <input value="<?=old_value('twitter_link', $row->twitter_link)?>" type="text" class="form-control mb-3" name="twitter_link" placeholder="Twitter Link">
                 <label>Facebook link:</label>
                 <input value="<?=old_value('facebook_link', $row->facebook_link)?>" type="text" class="form-control mb-3" name="facebook_link" placeholder="Facebook Link">
+                <label>Instagram link:</label>
+                <input value="<?=old_value('instagram_link', $row->instagram_link)?>" type="text" class="form-control mb-3" name="instagram_link" placeholder="Instagram Link">
+                <label>LinkedIn link:</label>
+                <input value="<?=old_value('linkedin_link', $row->linkedin_link)?>" type="text" class="form-control mb-3" name="linkedin_link" placeholder="LinkedIn Link">
+                <label>Email:</label>
+                <input value="<?=old_value('email', $row->email)?>" type="text" class="form-control mb-3" name="email" placeholder="Email">
+                <label>Phone:</label>
+                <input value="<?=old_value('phone', $row->phone)?>" type="text" class="form-control mb-3" name="phone" placeholder="Phone">
                 <button class="btn btn-primary my-4">Save</button>
             </form>
             <?php else:?>
