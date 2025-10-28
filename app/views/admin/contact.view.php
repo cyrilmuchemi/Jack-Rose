@@ -10,6 +10,9 @@
             <form method="post">
                 <label>Twitter link:</label>
                 <input value="<?=old_value('twitter_link', $row->twitter_link)?>" type="text" class="form-control mb-3" name="twitter_link" placeholder="Twitter Link">
+                <label>Facebook link:</label>
+                <input value="<?=old_value('facebook_link', $row->facebook_link)?>" type="text" class="form-control mb-3" name="facebook_link" placeholder="Facebook Link">
+                <button class="btn btn-primary my-4">Save</button>
             </form>
             <?php else:?>
                 <div class="alert alert-danger text-center">Record not found.</div>

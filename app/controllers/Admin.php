@@ -50,25 +50,34 @@ class Admin extends Controller
     }
 
     public function contact($action = null, $id = null){
-        $user = new User();
-        $contact = new Contact_Model();
-        $contact->create_table();
-        if(!$user->logged_in()) redirect('login');
-        $data['action'] = $action;
-        $contact->limit = 1;
-        $data['rows'] = $contact->findAll();
+    $user = new User();
+    $contact = new Contact_Model();
+    $contact->create_table();
 
-            if($action == 'edit'){
-            $data['row'] = $contact->first(['id'=>$id]);
-            if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-                if ($contact->validate($_POST, $id)) {
+    if (!$user->logged_in()) redirect('login');
+
+    $data['action'] = $action;
+    $data['rows'] = $contact->findAll();
+
+    if ($action == 'edit') {
+        $data['row'] = $contact->first(['id' => $id]);
+
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+            if ($contact->validate($_POST, $id)) {
+                if ($data['row']) {
                     $contact->update($id, $_POST);
-                    redirect('admin/contact');
                 } else {
-                    $data['errors'] = $contact->errors;
+                    $contact->insert($_POST);
                 }
+
+                redirect('admin/contact');
+            } else {
+                $data['errors'] = $contact->errors;
             }
         }
-        $this->view('admin/contact', $data);
     }
+
+    $this->view('admin/contact', $data);
+}
+
 }

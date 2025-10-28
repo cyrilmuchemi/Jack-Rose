@@ -39,8 +39,10 @@ class Contact_Model
 
         $this->query($query);
 
-        $query = "insert into $this->table (twitter_link) values ('')";
+        $check = $this->query("SELECT COUNT(*) as count FROM contact_table");
 
-        $this->query($query);
+        if($check && $check[0]->count == 0){
+            $this->query("INSERT INTO $this->table (twitter_link) VALUES ('')");
+        }
     }
 }
