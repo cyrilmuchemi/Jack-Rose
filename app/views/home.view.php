@@ -103,40 +103,6 @@
                             </div>
                         </div>
                     </div>
-                    <div class="carousel-item">
-                        <img src="<?=ROOT?>/assets/img/carousel-2.jpg" class="img-fluid" alt="Image">
-                        <div class="carousel-caption">
-                            <div class="p-3 mx-auto animated zoomIn" style="max-width: 900px;">
-                                <div class="d-inline-block border-end-0 border-start-0 border-secondary p-2 mb-5" style="border-style: double;">
-                                    <h4 class="text-white text-uppercase fw-bold mb-0" style="letter-spacing: 3px;">WE ARE GETTING MARRIED</h4>
-                                </div>
-                                <h1 class="display-1 text-capitalize text-white mb-3">Evelyn <i class="fa fa-heart text-primary"></i> Anthony</h1>
-                                <div class="d-inline-block border-end-0 border-start-0 border-secondary p-2 mb-4" style="border-style: double;">
-                                    <h4 class="text-white text-uppercase fw-bold mb-0" style="letter-spacing: 3px;">June 28 2024</h4>
-                                </div>
-                                <div class="d-flex align-items-center justify-content-center">
-                                    <a class="btn btn-primary btn-primary-outline-0 py-3 px-5" href="#">RSVP Now</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="carousel-item">
-                        <img src="<?=ROOT?>/assets/img/carousel-3.png" class="img-fluid bg-secondary" alt="Image">
-                        <div class="carousel-caption">
-                            <div class="p-3 mx-auto animated zoomIn" style="max-width: 900px;">
-                                <div class="d-inline-block border-end-0 border-start-0 border-secondary p-2 mb-4" style="border-style: double;">
-                                    <h4 class="text-white text-uppercase fw-bold mb-0" style="letter-spacing: 3px;">WE ARE GETTING MARRIED</h4>
-                                </div>
-                                <h1 class="display-1 text-capitalize text-white mb-3">Evelyn <i class="fa fa-heart text-primary"></i> Anthony</h1>
-                                <div class="d-inline-block border-end-0 border-start-0 border-secondary p-2 mb-4" style="border-style: double;">
-                                    <h4 class="text-white text-uppercase fw-bold mb-0" style="letter-spacing: 3px;">June 28 2024</h4>
-                                </div>
-                                <div class="d-flex align-items-center justify-content-center">
-                                    <a class="btn btn-primary btn-primary-outline-0 py-3 px-5" href="#">RSVP Now</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
                 </div>
                 <button class="carousel-control-prev" type="button" data-bs-target="#carouselId" data-bs-slide="prev">
                     <span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -846,7 +812,7 @@
                         <div class="team-item">
                             <div class="team-img">
                                 <div class="team-img-main">
-                                    <img src="<?=ROOT?>/assets/img/Groomsmen-4.png" class="img-fluid w-100" alt="">
+                                    <img src="<?=ROOT?>/assets/img/Groomsmen-3.png" class="img-fluid w-100" alt="">
                                 </div>
                                 <div class="team-img-bg position-absolute" style="bottom: -30px; left: -100px; transform: rotate(50deg); z-index: 1;">
                                     <img src="<?=ROOT?>/assets/img/team-1-bg.png" class="img-fluid" alt="">
@@ -1037,8 +1003,8 @@
                             <a href="<?= $social_links->instagram_link ?? '#'?>" target="blank" class="btn-link"> Instagram</a>
                             <a href="<?= $social_links->twitter_link ?? '#'?>" target="blank" class="btn-link"> Twitter</a>
                             <h4 class="my-4 text-white">Contact Us</h4>
-                            <a href="#" target="blank" class="btn-link"><i class="fas fa-envelope text-secondary me-2"></i> info@example.com</a>
-                            <a href="#" target="blank" class="btn-link"><i class="fas fa-phone text-secondary me-2"></i> (+012) 3456 7890 123</a>
+                            <a href="mailto:<?= $social_links->email ?>" target="blank" class="btn-link"><i class="fas fa-envelope text-secondary me-2"></i><?= $social_links->email ?? 'email@gmail.com' ?></a>
+                            <a href="#" target="blank" class="btn-link"><i class="fas fa-phone text-secondary me-2"></i><?= $social_links->phone ?></a>
                         </div>
                     </div>
                 </div>
