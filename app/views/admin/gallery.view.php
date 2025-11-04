@@ -6,12 +6,14 @@
                 <?= implode('<br>', $errors) ?>
             </div>
         <?php endif; ?>
-        <form method="post">
-        <input value="<?=old_value('username')?>" type="text" class="form-control mt-3" name="username" placeholder="Username">
-        <input value="<?=old_value('email')?>" type="email" class="form-control mt-3" name="email" placeholder="Email">
-        <input value="<?=old_value('password')?>" type="password" class="form-control mt-3" name="password" placeholder="Password">
-        <button class="btn btn-primary my-4">Save</button>
-    </form>
+        <form method="post" enctype="multipart/form-data" class="text-center">
+            <label>
+                <img src="<?=get_image()?>" style="width: 300px; height: 300px; object-fit: cover; cursor: pointer;" alt="image">
+                <input type="file" name="image">
+            </label>
+            <br/>
+            <button class="btn btn-primary my-4">Save</button>
+      </form>
     </div>
 <?php elseif($action == "edit"):?>
     <div class="col-md-6 mx-auto p-3">
@@ -21,10 +23,8 @@
                 </div>
             <?php endif; ?>
             <?php if(!empty($row)):?>
-            <form method="post">
-                <input value="<?=old_value('username', $row->username)?>" type="text" class="form-control mt-3" name="username" placeholder="Username">
-                <input value="<?=old_value('email', $row->email)?>" type="email" class="form-control mt-3" name="email" placeholder="Email">
-                <input value="<?=old_value('password')?>" type="password" class="form-control mt-3" name="password" placeholder="Password (Leave empty to keep old password)">
+            <form method="post" enctype="multipart/form-data">
+                <img src="<?=old_value($row->image)?>" style="width: 100px; height: 100px;" alt="image">
                 <button class="btn btn-primary my-4">Save</button>
             </form>
             <?php else:?>
@@ -49,13 +49,11 @@
 <?php else:?>
  <h3 class="h3 mb-0 text-gray-800">
     Image Gallery
-    <a href="<?=ROOT?>/admin/users/new"><button class="btn btn-primary">new user</button></a>
+    <a href="<?=ROOT?>/admin/gallery/new"><button class="btn btn-primary">new image</button></a>
 </h3>
  <table class="table table-striped table-bordered mt-4">
     <tr>
         <th>#</th>
-        <th>Username</th>
-        <th>Email</th>
         <th>Action</th>
     </tr>
     <?php if(!empty($rows)): ?>
@@ -64,10 +62,10 @@
                 <td><?= $row->id ?></td>
                 <td><?= $row->image ?></td>
                 <div>
-                    <a href="<?=ROOT?>/admin/users/edit/<?=$row->id?>">
+                    <a href="<?=ROOT?>/admin/gallery/edit/<?=$row->id?>">
                         <button class="btn btn-primary">Edit</button>
                     </a>
-                    <a href="<?=ROOT?>/admin/users/delete/<?=$row->id?>">
+                    <a href="<?=ROOT?>/admin/gallery/delete/<?=$row->id?>">
                         <button class="btn btn-danger">Delete</button>
                     </a>
                 </div>
