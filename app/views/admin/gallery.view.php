@@ -9,11 +9,17 @@
         <form method="post" enctype="multipart/form-data" class="text-center">
             <label>
                 <img src="<?=get_image()?>" style="width: 300px; height: 300px; object-fit: cover; cursor: pointer;" alt="image">
-                <input type="file" name="image">
+                <input onchange="display_image(this.files[0], event)" type="file" name="image">
             </label>
             <br/>
             <button class="btn btn-primary my-4">Save</button>
       </form>
+      <script>
+        function display_image(file, e){
+            let img = e.currentTarget.parentNode.querySelector("img");
+            img.src = URL.createObjectURL(file)
+        }
+      </script>
     </div>
 <?php elseif($action == "edit"):?>
     <div class="col-md-6 mx-auto p-3">
