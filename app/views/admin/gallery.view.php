@@ -27,15 +27,25 @@
                 <div class="alert alert-danger text-center">
                     <?= implode('<br>', $errors) ?>
                 </div>
-            <?php endif; ?>
+        <?php endif; ?>
             <?php if(!empty($row)):?>
-            <form method="post" enctype="multipart/form-data">
-                <img src="<?=old_value($row->image)?>" style="width: 100px; height: 100px;" alt="image">
+            <form method="post" enctype="multipart/form-data" class="text-center">
+                <label>
+                    <img src="<?=get_image($row->image)?>" style="width: 300px; height: 300px; object-fit: cover; cursor: pointer;" alt="image">
+                    <input onchange="display_image(this.files[0], event)" type="file" name="image">
+                </label>
+                <br/>
                 <button class="btn btn-primary my-4">Save</button>
             </form>
+            <script>
+                function display_image(file, e){
+                    let img = e.currentTarget.parentNode.querySelector("img");
+                    img.src = URL.createObjectURL(file)
+                }
+            </script>
             <?php else:?>
                 <div class="alert alert-danger text-center">Record not found.</div>
-            <?php endif;?>
+        <?php endif;?>
     </div>
 <?php elseif($action == "delete"):?>
     <?php if(!empty($errors)): ?>
@@ -44,9 +54,10 @@
         </div>
     <?php endif; ?>
     <?php if(!empty($row)):?>
-        <form method="post">
-            <div class="form-control mt-3"><?=old_value('username', $row->username)?></div>
-            <div class="form-control mt-3"><?=old_value('email', $row->email)?></div>
+        <form method="post" class="text-center">
+            <label>
+                <img src="<?=get_image($row->image)?>" style="width: 300px; height: 300px; object-fit: cover; cursor: pointer;" alt="image">
+            </label>
             <button class="btn btn-danger my-4">Delete</button>
         </form>
     <?php else:?>
@@ -60,22 +71,25 @@
  <table class="table table-striped table-bordered mt-4">
     <tr>
         <th>#</th>
+        <th>Image</th>
         <th>Action</th>
     </tr>
     <?php if(!empty($rows)): ?>
         <?php foreach($rows as $row):?>
-            <div>
+            <tr>
                 <td><?= $row->id ?></td>
-                <td><?= $row->image ?></td>
-                <div>
+                <td>
+                    <img src="<?=get_image($row->image)?>" style="width:200px;height:200px;object-fit:cover;">
+                </td>
+                <td>
                     <a href="<?=ROOT?>/admin/gallery/edit/<?=$row->id?>">
                         <button class="btn btn-primary">Edit</button>
                     </a>
                     <a href="<?=ROOT?>/admin/gallery/delete/<?=$row->id?>">
                         <button class="btn btn-danger">Delete</button>
                     </a>
-                </div>
-            </div>
+                </td>
+            </tr>
         <?php endforeach;?>
     <?php endif;?>
  </table>

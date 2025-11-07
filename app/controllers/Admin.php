@@ -60,6 +60,12 @@ class Admin extends Controller
         if($action == 'new'){
             if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 if ($gallery->validate($_FILES)) {
+                    $folder = "uploads/";
+
+                    if(!file_exists($folder)){
+                        mkdir($folder, 0777, true);
+                    }
+
                     $destination = $folder . time() . $_FILES['image']['name'];
                     move_uploaded_file($_FILES['image']['tmp_name'], $destination);
 
@@ -71,25 +77,45 @@ class Admin extends Controller
                 }
             }
         }else if($action == 'edit'){
-            $data['row'] = $gallery->first(['id'=>$id]);
-            if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-                if ($gallery->validate($_POST, $id)) {
-                    if(empty($_POST['password'])){
-                        unset($_POST['password']);
+            $data['row'] = $gallery->first(['id' => $id]);
+
+            if($_SERVER['REQUEST_METHOD'] == 'POST')
+            {
+                if($gallery->validate($_POST, $id)){
+                    if(!empty($_FILES['image']['name'])){
+                        $folder = "uploads/";
+
+                        if (!empty($row->image) && file_exists($row->image)) {
+                            unlink($row->image);
+                        }
+
+                        if(!file_exists($folder)){
+                            mkdir($folder, 0777, true);
+                        }
+
+                        $newImageName = time() . "_" . $_FILES['image']['name'];
+                        $destination = $folder . $newImageName;
+
+                        move_uploaded_file($_FILES['image']['tmp_name'], $destination);
+
+                        $dataToUpdate['image'] = $destination;
                     }else{
-                        $_POST['password'] = password_hash($_POST['password'], PASSWORD_DEFAULT);
+                        $dataToUpdate['image'] = $data['row']->image;
                     }
-                    $gallery->update($id, $_POST);
+
+                    $gallery->update($id, $dataToUpdate);
                     redirect('admin/gallery');
-                } else {
+                }else{
                     $data['errors'] = $gallery->errors;
                 }
             }
         }else if($action == 'delete'){
             $data['row'] = $gallery->first(['id'=>$id]);
                 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-                $gallery->delete($id);
-                redirect('admin/gallery');
+                    $gallery->delete($id);
+                    if(file_exists($data['row']->image)) unlink($data['row']->image);
+                    $gallery->delete($id);
+                    redirect('admin/gallery');
                 }
         }
             $this->view('admin/gallery', $data);

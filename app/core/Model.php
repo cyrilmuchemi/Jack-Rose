@@ -93,6 +93,10 @@ Trait Model
                 }
             }
         }
+
+        if(empty($data)){
+            return false;
+        }
       
         $keys = array_keys($data);
         $query = "UPDATE $this->table SET ";

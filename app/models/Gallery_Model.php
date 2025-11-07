@@ -6,6 +6,8 @@ class Gallery_Model
 
     protected $table = 'gallery_table';
 
+    protected $allowedColumns = ['image'];
+
     public function validate($data, $id = null)
     {
         $allowed_types = [
