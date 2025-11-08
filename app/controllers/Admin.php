@@ -69,6 +69,8 @@ class Admin extends Controller
                     $destination = $folder . time() . $_FILES['image']['name'];
                     move_uploaded_file($_FILES['image']['tmp_name'], $destination);
 
+                    $gallery->compress_image($destination, $destination, 70);
+
                     $_POST['image'] = $destination;
                     $gallery->insert($_POST);
                     redirect('admin/gallery');
@@ -97,6 +99,9 @@ class Admin extends Controller
                         $destination = $folder . $newImageName;
 
                         move_uploaded_file($_FILES['image']['tmp_name'], $destination);
+
+                        $gallery->compress_image($destination, $destination, 70);
+
 
                         $dataToUpdate['image'] = $destination;
                     }else{
