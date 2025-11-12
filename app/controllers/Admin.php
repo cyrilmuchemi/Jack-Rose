@@ -126,6 +126,85 @@ class Admin extends Controller
             $this->view('admin/gallery', $data);
     }
 
+
+    public function about($action = null, $id = null){
+        $user = new User();
+        $about = new About_Model;
+
+        if(!$user->logged_in()) redirect('login');
+        $data['action'] = $action;
+        $data['rows'] = $about->findAll();
+
+        if($action == 'new'){
+            if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+                if ($about->validate($_FILES, $_POST)) {
+                    $folder = "uploads/";
+
+                    if(!file_exists($folder)){
+                        mkdir($folder, 0777, true);
+                    }
+
+                    $destination = $folder . time() . $_FILES['image']['name'];
+                    move_uploaded_file($_FILES['image']['tmp_name'], $destination);
+
+                    $about->compress_image($destination, $destination, 70);
+
+                    $_POST['image'] = $destination;
+                    $about->insert($_POST);
+                    redirect('admin/about');
+                } else {
+                    $data['errors'] = $about->errors;
+                }
+            }
+        }else if($action == 'edit'){
+            $data['row'] = $about->first(['id' => $id]);
+
+            if($_SERVER['REQUEST_METHOD'] == 'POST')
+            {
+                if($about->validate($_POST, $_POST, $id)){
+                    if(!empty($_FILES['image']['name'])){
+                        $folder = "uploads/";
+
+                        if (!empty($row->image) && file_exists($row->image)) {
+                            unlink($row->image);
+                        }
+
+                        if(!file_exists($folder)){
+                            mkdir($folder, 0777, true);
+                        }
+
+                        $newImageName = time() . "_" . $_FILES['image']['name'];
+                        $destination = $folder . $newImageName;
+
+                        move_uploaded_file($_FILES['image']['tmp_name'], $destination);
+
+                        $about->compress_image($destination, $destination, 70);
+
+
+                        $dataToUpdate['image'] = $destination;
+                    }else{
+                        $dataToUpdate['image'] = $data['row']->image;
+                    }
+
+                    $about->update($id, $dataToUpdate);
+                    redirect('admin/about');
+                }else{
+                    $data['errors'] = $about->errors;
+                }
+            }
+        }else if($action == 'delete'){
+            $data['row'] = $about->first(['id'=>$id]);
+                if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+                    $about->delete($id);
+                    if(file_exists($data['row']->image)) unlink($data['row']->image);
+                    $about->delete($id);
+                    redirect('admin/about');
+                }
+        }
+            $this->view('admin/about', $data);
+    }
+
+
     public function contact($action = null, $id = null){
     $user = new User();
     $contact = new Contact_Model();
