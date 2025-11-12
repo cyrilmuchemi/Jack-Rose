@@ -136,33 +136,47 @@
                 </div>
                 <div class="row">
                     <div class="col-lg-12">
-                        <div class="row g-4 align-items-center">
-                            <div class="col-lg-5 wow fadeInUp" data-wow-delay="0.3s">
-                                <div class="d-flex">
-                                    <div class="text-end my-auto pe-4">
-                                        <h3 class="text-primary mb-3">Evelyn</h3>
-                                        <p class="text-dark mb-0" style="line-height: 30px;">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy
-                                        </p>
-                                    </div>
-                                    <img src="<?=ROOT?>/assets/img/bride.jpg" class="img-fluid img-border" alt="">
+                 <div class="row g-4 align-items-center">
+                    <?php if (!empty($hello) && count($hello) >= 2): ?>
+                        <div class="col-lg-5 wow fadeInUp" data-wow-delay="0.3s">
+                            <div class="d-flex">
+                                <div class="text-end my-auto pe-4">
+                                    <h3 class="text-primary mb-3"><?= $hello[0]->name ?></h3>
+                                    <p class="text-dark mb-0" style="line-height: 30px;">
+                                        <?= $hello[0]->person_description ?>
+                                    </p>
                                 </div>
+                                <img src="<?= get_image($hello[0]->image) ?>" class="img-fluid img-border" style="width:200px; height:200px;" alt="">
                             </div>
-                            <div class="col-lg-2 wow fadeIn" data-wow-delay="0.5s">
-                                <div class="d-flex align-items-center justify-content-center">
-                                    <i class="fa fa-heart fa-5x text-primary"></i>
-                               </div>
+                        </div>
+
+                        <div class="col-lg-2 wow fadeIn" data-wow-delay="0.5s">
+                            <div class="d-flex align-items-center justify-content-center">
+                                <i class="fa fa-heart fa-5x text-primary"></i>
                             </div>
-                            <div class="col-lg-5 wow fadeInUp" data-wow-delay="0.3s">
-                                <div class="d-flex">
-                                    <img src="<?=ROOT?>/assets/img/Groom.jpg" class="img-fluid img-border" alt="">
-                                    <div class="my-auto ps-4">
-                                        <h3 class="text-primary mb-3">Anthony</h3>
-                                        <p class="text-dark mb-0" style="line-height: 30px;">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy
-                                        </p>
-                                    </div>
+                        </div>
+
+                        <div class="col-lg-5 wow fadeInUp" data-wow-delay="0.3s">
+                            <div class="d-flex">
+                                <img src="<?= get_image($hello[1]->image) ?>" class="img-fluid img-border me-4" style="width:200px; height:200px;" alt="">
+                                <div class="my-auto">
+                                    <h3 class="text-primary mb-3"><?= $hello[1]->name ?></h3>
+                                    <p class="text-dark mb-0" style="line-height: 30px;">
+                                        <?= $hello[1]->person_description ?>
+                                    </p>
                                 </div>
                             </div>
                         </div>
+                    <?php elseif (!empty($hello)): ?>
+                        <!-- fallback if there's only one person -->
+                        <div class="col-lg-12 text-center">
+                            <h3 class="text-primary mb-3"><?= $hello[0]->name ?></h3>
+                            <p class="text-dark mb-0"><?= $hello[0]->person_description ?></p>
+                            <img src="<?= get_image($hello[0]->image) ?>" class="img-fluid img-border mt-3" alt="">
+                        </div>
+                    <?php endif; ?>
+                </div>
+
                     </div>
                 </div>
             </div>

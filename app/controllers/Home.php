@@ -8,6 +8,9 @@ class Home extends Controller
 
         $gallery = new Gallery_Model;
         $data['gallery'] = $gallery->findAll();
+
+        $hello = new Hello_Model;
+        $data['hello'] = $hello->findAll();
         
         $this->view('home', $data);
     }
