@@ -12,6 +12,10 @@
                 <input onchange="display_image(this.files[0], event)" type="file" name="image">
             </label>
             <br/>
+            <label for="name"><input type="text" name="name" placeholder="name"></label>
+            <br/>
+            <label for="person description"><input type="text" name="person_description" placeholder="description"></label>
+            <br/>
             <button class="btn btn-primary my-4">Save</button>
       </form>
       <script>
@@ -65,8 +69,8 @@
     <?php endif;?>
 <?php else:?>
  <h3 class="h3 mb-0 text-gray-800">
-    About
-    <a href="<?=ROOT?>/admin/about/new"><button class="btn btn-primary">new details</button></a>
+    Hello
+    <a href="<?=ROOT?>/admin/hello/new"><button class="btn btn-primary">new details</button></a>
 </h3>
  <table class="table table-striped table-bordered mt-4">
     <tr>
@@ -74,7 +78,6 @@
         <th>Image</th>
         <th>Name</th>
         <th>Person Description</th>
-        <th>About Description</th>
         <th>Action</th>
     </tr>
     <?php if(!empty($rows)): ?>
@@ -86,12 +89,11 @@
                 </td>
                 <td><?=escape($row->name)?></td>
                 <td><?=escape($row->person_description)?></td>
-                <td><?=escape($row->about_description)?></td>
                 <td>
-                    <a href="<?=ROOT?>/admin/about/edit/<?=$row->id?>">
+                    <a href="<?=ROOT?>/admin/hello/edit/<?=$row->id?>">
                         <button class="btn btn-primary">Edit</button>
                     </a>
-                    <a href="<?=ROOT?>/admin/about/delete/<?=$row->id?>">
+                    <a href="<?=ROOT?>/admin/hello/delete/<?=$row->id?>">
                         <button class="btn btn-danger">Delete</button>
                     </a>
                 </td>

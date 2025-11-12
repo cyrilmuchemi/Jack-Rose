@@ -126,11 +126,88 @@ class Admin extends Controller
             $this->view('admin/gallery', $data);
     }
 
+    public function hello($action = null, $id = null){
+        $user = new User();
+        $hello = new Hello_Model;
+       
+        if(!$user->logged_in()) redirect('login');
+        $data['action'] = $action;
+        $data['rows'] = $hello->findAll();
+
+        if($action == 'new'){
+            if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+                if ($hello->validate($_FILES, $_POST)) {
+                    $folder = "uploads/";
+
+                    if(!file_exists($folder)){
+                        mkdir($folder, 0777, true);
+                    }
+
+                    $destination = $folder . time() . $_FILES['image']['name'];
+                    move_uploaded_file($_FILES['image']['tmp_name'], $destination);
+
+                    $hello->compress_image($destination, $destination, 70);
+
+                    $_POST['image'] = $destination;
+                    $hello->insert($_POST);
+                    redirect('admin/hello');
+                } else {
+                    $data['errors'] = $hello->errors;
+                }
+            }
+        }else if($action == 'edit'){
+            $data['row'] = $hello->first(['id' => $id]);
+
+            if($_SERVER['REQUEST_METHOD'] == 'POST')
+            {
+                if($hello->validate($_POST, $_POST, $id)){
+                    if(!empty($_FILES['image']['name'])){
+                        $folder = "uploads/";
+
+                        if (!empty($row->image) && file_exists($row->image)) {
+                            unlink($row->image);
+                        }
+
+                        if(!file_exists($folder)){
+                            mkdir($folder, 0777, true);
+                        }
+
+                        $newImageName = time() . "_" . $_FILES['image']['name'];
+                        $destination = $folder . $newImageName;
+
+                        move_uploaded_file($_FILES['image']['tmp_name'], $destination);
+
+                        $hello->compress_image($destination, $destination, 70);
+
+
+                        $dataToUpdate['image'] = $destination;
+                    }else{
+                        $dataToUpdate['image'] = $data['row']->image;
+                    }
+
+                    $hello->update($id, $dataToUpdate);
+                    redirect('admin/hello');
+                }else{
+                    $data['errors'] = $hello->errors;
+                }
+            }
+        }else if($action == 'delete'){
+            $data['row'] = $hello->first(['id'=>$id]);
+                if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+                    $hello->delete($id);
+                    if(file_exists($data['row']->image)) unlink($data['row']->image);
+                    $hello->delete($id);
+                    redirect('admin/hello');
+                }
+        }
+            $this->view('admin/hello', $data);
+    }
+
 
     public function about($action = null, $id = null){
         $user = new User();
         $about = new About_Model;
-
+        
         if(!$user->logged_in()) redirect('login');
         $data['action'] = $action;
         $data['rows'] = $about->findAll();

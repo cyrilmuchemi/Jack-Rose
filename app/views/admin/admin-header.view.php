@@ -55,9 +55,9 @@
             </li>
              <hr class="sidebar-divider my-0">
             <li class="nav-item active">
-                <a class="nav-link" href="<?=ROOT?>/admin/home">
+                <a class="nav-link" href="<?=ROOT?>/admin/hello">
                     <i class="fas fa-fw fa-tachometer-alt"></i>
-                    <span>Home Page</span></a>
+                    <span>Hello</span></a>
             </li>
              <li class="nav-item active">
                 <a class="nav-link" href="<?=ROOT?>/admin/contact">

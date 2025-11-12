@@ -1,21 +1,15 @@
 <?php
 
-class About_Model
+class Hello_Model
 {
     use Model;
 
-    protected $table = 'about_table';
+    protected $table = 'hello_table';
 
     protected $allowedColumns = [
         'image',
         'name',
-        'person_description',
-        'about_description',
-        'twitter_link',
-        'facebook_link',
-        'instagram_link',
-        'linkedin_link',
-        'phone'
+        'person_description'
     ];
 
     public function validate($files_data, $post_data, $id = null)
@@ -43,10 +37,6 @@ class About_Model
 
         if(empty($post_data['person_description'])){
             $this->errors['person_description'] = "Person description is required";
-        }
-
-        if(empty($post_data['about_description'])){
-            $this->errors['about_description'] = "About description is required";
         }
 
         return empty($this->errors);
@@ -81,17 +71,11 @@ class About_Model
     }
 
     public function create_table(){
-        $query = "create table if not exists about_table(
+        $query = "create table if not exists hello_table(
         id int primary key auto_increment,
         image varchar(1024) null,
         name varchar(50) not null,
-        person_description varchar(1024) not null,
-        about_description varchar(1024) not null,
-        twitter_link varchar(1024) null,
-        facebook_link varchar(1024) null,
-        instagram_link varchar(1024) null,
-        linkedin_link varchar(1024) null,
-        phone varchar(50) null
+        person_description varchar(1024) not null
         )";
 
         $this->query($query);
