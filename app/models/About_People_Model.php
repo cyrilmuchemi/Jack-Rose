@@ -85,6 +85,7 @@ class About_People_Model
             id int primary key auto_increment,
             image varchar(1024) null,
             name varchar(50) not null,
+            role varchar(50) not null,
             person_description varchar(1024) not null,
             twitter_link varchar(1024) null,
             facebook_link varchar(1024) null,

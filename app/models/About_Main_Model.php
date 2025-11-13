@@ -79,6 +79,7 @@ class About_Main_Model
     {
         $query = "CREATE TABLE IF NOT EXISTS about_main_table(
             id INT PRIMARY KEY AUTO_INCREMENT,
+            image VARCHAR(1024) NOT NULL,
             about_title TEXT NOT NULL,
             about_description TEXT NOT NULL,
             phone VARCHAR(50) NULL
