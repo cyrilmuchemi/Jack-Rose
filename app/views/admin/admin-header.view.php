@@ -72,9 +72,14 @@
             </li>
              <hr class="sidebar-divider my-0">
             <li class="nav-item active">
-                <a class="nav-link" href="<?=ROOT?>/admin/about">
+                <a class="nav-link" href="<?=ROOT?>/admin/about_main">
                     <i class="fas fa-fw fa-tachometer-alt"></i>
-                    <span>About</span></a>
+                    <span>About Main</span></a>
+            </li>
+            <li class="nav-item active">
+                <a class="nav-link" href="<?=ROOT?>/admin/about_people">
+                    <i class="fas fa-fw fa-tachometer-alt"></i>
+                    <span>About People</span></a>
             </li>
             <hr class="sidebar-divider my-0">
             <li class="nav-item active">

@@ -203,82 +203,169 @@ class Admin extends Controller
             $this->view('admin/hello', $data);
     }
 
+    public function about_main($action = null, $id = null){
+            $user = new User();
+            $aboutMain = new About_Main_Model;
 
-    public function about($action = null, $id = null){
-        $user = new User();
-        $about = new About_Model;
-        
-        if(!$user->logged_in()) redirect('login');
-        $data['action'] = $action;
-        $data['rows'] = $about->findAll();
+            if (!$user->logged_in()) redirect('login');
 
-        if($action == 'new'){
-            if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-                if ($about->validate($_FILES, $_POST)) {
-                    $folder = "uploads/";
+            $data['action'] = $action;
+            $data['rows'] = $aboutMain->findAll();
 
-                    if(!file_exists($folder)){
-                        mkdir($folder, 0777, true);
-                    }
-
-                    $destination = $folder . time() . $_FILES['image']['name'];
-                    move_uploaded_file($_FILES['image']['tmp_name'], $destination);
-
-                    $about->compress_image($destination, $destination, 70);
-
-                    $_POST['image'] = $destination;
-                    $about->insert($_POST);
-                    redirect('admin/about');
-                } else {
-                    $data['errors'] = $about->errors;
-                }
-            }
-        }else if($action == 'edit'){
-            $data['row'] = $about->first(['id' => $id]);
-
-            if($_SERVER['REQUEST_METHOD'] == 'POST')
-            {
-                if($about->validate($_POST, $_POST, $id)){
-                    if(!empty($_FILES['image']['name'])){
+            if ($action == 'new') {
+                if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+                    if ($aboutMain->validate($_FILES, $_POST)) {
                         $folder = "uploads/";
 
-                        if (!empty($row->image) && file_exists($row->image)) {
-                            unlink($row->image);
-                        }
-
-                        if(!file_exists($folder)){
+                        if (!file_exists($folder)) {
                             mkdir($folder, 0777, true);
                         }
 
-                        $newImageName = time() . "_" . $_FILES['image']['name'];
-                        $destination = $folder . $newImageName;
-
+                        $destination = $folder . time() . "_" . $_FILES['image']['name'];
                         move_uploaded_file($_FILES['image']['tmp_name'], $destination);
 
-                        $about->compress_image($destination, $destination, 70);
+                        $aboutMain->compress_image($destination, $destination, 70);
 
+                        $_POST['image'] = $destination;
+                        $aboutMain->insert($_POST);
+
+                        redirect('admin/about_main');
+                    } else {
+                        $data['errors'] = $aboutMain->errors;
+                    }
+                }
+            } elseif ($action == 'edit') {
+                $data['row'] = $aboutMain->first(['id' => $id]);
+
+                if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+                    if ($aboutMain->validate($_FILES, $_POST, $id)) {
+
+                        $dataToUpdate = [
+                            'about_title' => $_POST['about_title'],
+                            'about_description' => $_POST['about_description'],
+                            'phone' => $_POST['phone'] ?? null,
+                        ];
+
+                        if (!empty($_FILES['image']['name'])) {
+                            $folder = "uploads/";
+
+                            if (!file_exists($folder)) {
+                                mkdir($folder, 0777, true);
+                            }
+
+                            if (!empty($data['row']->image) && file_exists($data['row']->image)) {
+                                unlink($data['row']->image);
+                            }
+
+                            $destination = $folder . time() . "_" . $_FILES['image']['name'];
+                            move_uploaded_file($_FILES['image']['tmp_name'], $destination);
+                            $aboutMain->compress_image($destination, $destination, 70);
+
+                            $dataToUpdate['image'] = $destination;
+                        } else {
+                            $dataToUpdate['image'] = $data['row']->image;
+                        }
+
+                        $aboutMain->update($id, $dataToUpdate);
+                        redirect('admin/about_main');
+                    } else {
+                        $data['errors'] = $aboutMain->errors;
+                    }
+                }
+            } elseif ($action == 'delete') {
+                $data['row'] = $aboutMain->first(['id' => $id]);
+                if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+                    if (file_exists($data['row']->image)) unlink($data['row']->image);
+                    $aboutMain->delete($id);
+                    redirect('admin/about_main');
+                }
+            }
+
+            $this->view('admin/about_main', $data);
+    }
+
+    public function about_people($action = null, $id = null){
+        $user = new User();
+        $aboutPeople = new About_People_Model;
+
+        if (!$user->logged_in()) redirect('login');
+
+        $data['action'] = $action;
+        $data['rows'] = $aboutPeople->findAll();
+
+        if ($action == 'new') {
+            if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+                if ($aboutPeople->validate($_FILES, $_POST)) {
+                    $folder = "uploads/";
+
+                    if (!file_exists($folder)) {
+                        mkdir($folder, 0777, true);
+                    }
+
+                    $destination = $folder . time() . "_" . $_FILES['image']['name'];
+                    move_uploaded_file($_FILES['image']['tmp_name'], $destination);
+                    $aboutPeople->compress_image($destination, $destination, 70);
+
+                    $_POST['image'] = $destination;
+                    $aboutPeople->insert($_POST);
+
+                    redirect('admin/about_people');
+                } else {
+                    $data['errors'] = $aboutPeople->errors;
+                }
+            }
+        } elseif ($action == 'edit') {
+            $data['row'] = $aboutPeople->first(['id' => $id]);
+
+            if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+                if ($aboutPeople->validate($_FILES, $_POST, $id)) {
+
+                    $dataToUpdate = [
+                        'name' => $_POST['name'],
+                        'role' => $_POST['role'] ?? '',
+                        'person_description' => $_POST['person_description'],
+                        'twitter_link' => $_POST['twitter_link'] ?? '',
+                        'facebook_link' => $_POST['facebook_link'] ?? '',
+                        'instagram_link' => $_POST['instagram_link'] ?? '',
+                        'linkedin_link' => $_POST['linkedin_link'] ?? '',
+                    ];
+
+                    if (!empty($_FILES['image']['name'])) {
+                        $folder = "uploads/";
+
+                        if (!file_exists($folder)) {
+                            mkdir($folder, 0777, true);
+                        }
+
+                        if (!empty($data['row']->image) && file_exists($data['row']->image)) {
+                            unlink($data['row']->image);
+                        }
+
+                        $destination = $folder . time() . "_" . $_FILES['image']['name'];
+                        move_uploaded_file($_FILES['image']['tmp_name'], $destination);
+                        $aboutPeople->compress_image($destination, $destination, 70);
 
                         $dataToUpdate['image'] = $destination;
-                    }else{
+                    } else {
                         $dataToUpdate['image'] = $data['row']->image;
                     }
 
-                    $about->update($id, $dataToUpdate);
-                    redirect('admin/about');
-                }else{
-                    $data['errors'] = $about->errors;
+                    $aboutPeople->update($id, $dataToUpdate);
+                    redirect('admin/about_people');
+                } else {
+                    $data['errors'] = $aboutPeople->errors;
                 }
             }
-        }else if($action == 'delete'){
-            $data['row'] = $about->first(['id'=>$id]);
-                if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-                    $about->delete($id);
-                    if(file_exists($data['row']->image)) unlink($data['row']->image);
-                    $about->delete($id);
-                    redirect('admin/about');
-                }
+        } elseif ($action == 'delete') {
+            $data['row'] = $aboutPeople->first(['id' => $id]);
+            if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+                if (file_exists($data['row']->image)) unlink($data['row']->image);
+                $aboutPeople->delete($id);
+                redirect('admin/about_people');
+            }
         }
-            $this->view('admin/about', $data);
+
+        $this->view('admin/about_people', $data);
     }
 
 
