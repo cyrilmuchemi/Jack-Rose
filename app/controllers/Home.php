@@ -11,6 +11,12 @@ class Home extends Controller
 
         $hello = new Hello_Model;
         $data['hello'] = $hello->findAll();
+
+        $aboutMain = new About_Main_Model;
+        $aboutPeople = new About_People_Model;
+
+        $data['about_main'] = $aboutMain->first(['id'=>2]);
+        $data['people'] = $aboutPeople->findAll();
         
         $this->view('home', $data);
     }
